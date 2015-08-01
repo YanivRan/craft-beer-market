@@ -3,7 +3,9 @@ class BeerCategoriesController < ApplicationController
   before_action :set_beer_category, only: [:show, :edit, :update, :destroy, :change]
 
   def show
-    respond_with(@beer_category)
+    respond_to do |format|
+      format.html
+    end
   end
 
   def index 
@@ -21,9 +23,15 @@ class BeerCategoriesController < ApplicationController
   end
 
   def create
-    @beer_category = current_user.beer.new(beer_category_params)
+    @beer_category = BeerCategory.new(beer_category_params)
     @beer_category.save
-    respond_with(@beer_category)
+    respond_to do |format|
+      format.html { redirect_to @beer_category, :notice => 'Category was added!' }
+      format.json { render json:  @beer_category }
+    end 
+    #
+    #@beer_category.save
+    #respond_with(@beer_category)
   end
 
   def update
@@ -49,6 +57,6 @@ class BeerCategoriesController < ApplicationController
     end
 
     def beer_category_params
-      params.require(:beer).permit(:name, :description)
+      params.require(:beer_category).permit(:name, :description)
     end
 end 
