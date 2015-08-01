@@ -11,7 +11,8 @@
     / Collect the nav links, forms, and other content for toggling
     #bs-example-navbar-collapse-1.collapse.navbar-collapse
       %ul.nav.navbar-nav.navbar-right
-        - if current_user
+        - if current_user.admin?
+          %li= link_to "Manage Categories", beer_categories_path
           %li= link_to "Settings", edit_user_registration_path
           %li= link_to "Log Out", destroy_user_session_path, method: :delete
         - else

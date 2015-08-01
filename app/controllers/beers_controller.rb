@@ -1,10 +1,10 @@
-class Admin::BeersController < ApplicationController
+class BeersController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_task, only: [:show, :edit, :update, :destroy, :change, :archive]
+  before_action :set_beer, only: [:show, :edit, :update, :destroy, :change, :archive]
 
 
   def index
-    respond_with(@beers)
+    respond_with(Beer.all)
   end
 
   def show
@@ -47,11 +47,8 @@ class Admin::BeersController < ApplicationController
       @beer = Beer.find(params[:id])
     end
 
-    def set_beers
-    	@beers = Beer.all
-    end
 
     def beer_params
-      params.require(:beer).permit(:content, :state)
+      params.require(:beer).permit(:manufacturer_id,:name,:category_id,:country_id,:price,:description,:archived)
     end
 end

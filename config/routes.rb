@@ -1,20 +1,11 @@
 Rails.application.routes.draw do
   devise_for :users
-  namespace :admin do
-  get 'beers/index'
-  end
-
-  namespace :admin do
-  get 'users/index'
-  end
-
-  get 'adminusers/index'
-
-  get 'admin/users'
-
-  get 'admin/index'
-
-  get 'admin/users'
+  resources :beers
+    #get 'categories/index'
+  resources :beer_categories
+  
+  
+  #get 'admin/users'
 
   root 'pages#home'
 
