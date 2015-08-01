@@ -1,4 +1,20 @@
 Rails.application.routes.draw do
+  namespace :admin do
+  get 'beers/index'
+  end
+
+  namespace :admin do
+  get 'users/index'
+  end
+
+  get 'adminusers/index'
+
+  get 'admin/users'
+
+  get 'admin/index'
+
+  get 'admin/users'
+
   root 'pages#home'
 
   # The priority is based upon order of creation: first created -> highest priority.
