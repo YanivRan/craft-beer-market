@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 
     #get 'categories/index'
   resources :beer_categories
-  resources :users
+  resources :users, path: 'manage_users'
   
   #get 'admin/users'
 
