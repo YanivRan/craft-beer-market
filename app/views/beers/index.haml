@@ -1,2 +1,8 @@
-%h1 Pages#home
-%p Find me in app/views/pages/home.haml
+%h1 Beers
+%p 
+  .list-group
+    - Beer.all.each do |beer|
+      %a.list-group-item
+        %h4 #{beer.name} 
+        %p #{beer.description}
+  = link_to "Add Beer", new_beer_path, class: "btn btn-primary btn-lg"

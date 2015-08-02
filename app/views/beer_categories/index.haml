@@ -1,4 +1,8 @@
-%h1 Pages#categories
+%h1 Beer Categories
 %p 
-  = @beer_category
+  .list-group
+    - BeerCategory.all.each do |category|
+      %a.list-group-item
+        %h4 #{category.name} 
+        %p #{category.description}
   = link_to "Add Category", new_beer_category_path, class: "btn btn-primary btn-lg"

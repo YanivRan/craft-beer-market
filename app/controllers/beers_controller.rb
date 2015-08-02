@@ -4,16 +4,20 @@ class BeersController < ApplicationController
 
 
   def index
-    respond_with(Beer.all)
   end
 
   def show
-    respond_with(@beer)
+    respond_to do |format|
+      format.html
+    end
   end
 
   def new
     @beer = Beer.new
-    respond_with(@beer)
+    respond_to do |format|
+      format.html 
+      format.json { render json:  @beer }
+    end 
   end
 
   def edit
