@@ -7,3 +7,11 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 user = CreateAdminService.new.call
 puts 'CREATED ADMIN USER: ' << user.email
+
+@manufacturer = BeerManufacturers.new
+@manufacturer.name = 'MAISEL'
+@manufacturer.save
+
+@country = Country.new
+@counter.name = 'Israel'
+@country.save
