@@ -4,10 +4,10 @@ class BeersController < ApplicationController
   before_action :has_categories
 
   def index
-    @beers = Beer.all
+    @beers = Beer.where(nil)
     respond_to do |format|
       format.html
-      format.json { render json:  @beers }
+      format.json { render json:  @beers.archived("FALSE") }
     end
   end
 
@@ -64,11 +64,18 @@ class BeersController < ApplicationController
   end
 
   def archive
-    @beer.update_attribute(:archived, "true")
+    if @beer.archived
+      @beer.update_attribute(:archived, "FALSE")
+      @notice = "Beer is restored!"
+    else
+      @beer.update_attribute(:archived, "TRUE")
+      @notice = "Beer is now archived!"
+    end
     respond_to do |format|
-      format.html {redirect_to beers_path, notice: "Beer was archived!"}
+      format.html {redirect_to beers_path, notice: @notice}
       format.json { render json:  @beer}
     end
+    
   end
 
   private

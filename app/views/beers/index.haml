@@ -8,5 +8,8 @@
         = link_to '',edit_beer_path(id: beer.id), class: "fa fa-edit"
         / should add an alert, but not as a message box but as an alert box, and for now I will leave it alone. 
         = link_to '', beer , class: "fa fa-trash", method: :delete #, data: { confirm: 'Are you sure?' } 
-        = link_to '',archive_beers_path(id: beer.id), class: "fa fa-archive"
+        - if !beer.archived
+          = link_to '',archive_beers_path(id: beer.id), class: "fa fa-archive"
+        -else 
+          = link_to '',archive_beers_path(id: beer.id), class: "fa fa-unlock-alt"
   = link_to "Add Beer", new_beer_path, class: "btn btn-primary btn-lg"

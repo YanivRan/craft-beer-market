@@ -10,4 +10,6 @@ class Beer < ActiveRecord::Base
 	validates :country_id, presence: true
 	validates :price, presence: true
 
+	scope :archived, -> (archived) { where archived: archived }
+
 end
