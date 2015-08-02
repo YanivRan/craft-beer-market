@@ -6,6 +6,6 @@
         %h4 #{user.email} 
         %p #{user.current_sign_in_at}
         = link_to '',edit_user_path(id: user.id), class: "fa fa-edit"
-        / should add an alert, but not as a message box but as an alert box, and for now I will leave it alone. 
-        = link_to '', user , class: "fa fa-trash", method: :delete #, data: { confirm: 'Are you sure?' } 
+        / right now not allowing admin to remove other admins
+        /= link_to '', user , class: "fa fa-trash", method: :delete #, data: { confirm: 'Are you sure?' } 
   = link_to "Add User", new_user_path, class: "btn btn-primary btn-lg"
