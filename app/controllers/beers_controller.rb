@@ -4,11 +4,17 @@ class BeersController < ApplicationController
 
 
   def index
+    @beers = Beer.all
+    respond_to do |format|
+      format.html
+      format.json { render json:  @beers }
+    end
   end
 
   def show
     respond_to do |format|
       format.html
+      format.json { render json:  @beer }
     end
   end
 
@@ -24,14 +30,20 @@ class BeersController < ApplicationController
   end
 
   def create
-    @beer = current_user.beer.new(beer_params)
+    @beer = Beer.new(beer_params)
     @beer.save
-    respond_with(@beer)
+    respond_to do |format|
+      format.html { redirect_to @beer, :notice => 'Beer was added!' }
+      format.json { render json:  @beer}
+    end 
   end
 
   def update
     @beer.update(beer_params)
-    respond_with(@beer)
+    respond_to do |format|
+      format.html { redirect_to @beer, :notice => 'Beer was updated!' }
+      format.json { render json:  @beer}
+    end 
   end
 
   def destroy

@@ -7,5 +7,9 @@
     = csrf_meta_tags
   %body
     = render "layouts/header"
+    - flash.each do |key, value|
+      %div{:class => "alert alert-#{key} alert-dismissable"}
+        %button.close{"aria-hidden" => "true", "data-dismiss" => "alert", :type => "button"} ×
+        = value
     %div.container
       = yield
