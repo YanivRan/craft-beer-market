@@ -44,8 +44,16 @@ class BeerCategoriesController < ApplicationController
   end
 
   def destroy
-    @beer_category.destroy
-    respond_with(@beer_category)
+    if Beer.where(category_id: @beer_category.id).count == 0 
+      @beer_category.destroy 
+      @notice = "Beer Category Deleted"
+    else 
+      @notice = "Beer Category cannot be deleted as it contains beers"
+    end
+    respond_to do |format|
+        format.html {redirect_to beer_categories_path, notice: @notice}
+        format.json { render json:  @beer_category }
+    end
   end
 
   
