@@ -10,6 +10,6 @@
     - flash.each do |key, value|
       %div{:class => "alert alert-#{key} alert-dismissable"}
         %button.close{"aria-hidden" => "true", "data-dismiss" => "alert", :type => "button"} ×
-        = value
+        = value.html_safe 
     %div.container
       = yield

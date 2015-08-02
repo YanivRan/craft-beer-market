@@ -1,7 +1,7 @@
 %h1 Beer Categories
 %p 
   .list-group
-    - BeerCategory.all.each do |category|
+    - @beerscategory.all.each do |category|
       %a.list-group-item
         %h4 #{category.name} 
         %p #{category.description}

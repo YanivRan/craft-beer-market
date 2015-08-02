@@ -9,6 +9,7 @@ class BeerCategoriesController < ApplicationController
   end
 
   def index 
+    @beerscategory = BeerCategory.all
   end
 
   def new
@@ -26,7 +27,7 @@ class BeerCategoriesController < ApplicationController
     @beer_category = BeerCategory.new(beer_category_params)
     @beer_category.save
     respond_to do |format|
-      format.html { redirect_to @beer_category, :notice => 'Category was added!' }
+      format.html { redirect_to beer_categories_path, :notice => 'Category was added!' }
       format.json { render json:  @beer_category }
     end 
     #
@@ -36,7 +37,10 @@ class BeerCategoriesController < ApplicationController
 
   def update
     @beer_category.update(beer_category_params)
-    respond_with(@beer_category)
+    respond_to do |format|
+      format.html {redirect_to beer_categories_path, notice: "Beer Category Updated"}
+      format.json { render json:  @beer_category }
+    end
   end
 
   def destroy
@@ -44,12 +48,7 @@ class BeerCategoriesController < ApplicationController
     respond_with(@beer_category)
   end
 
-  def change
-    @beer_category.update_attributes(state: params[:state])
-    respond_to do |format|
-      format.html {redirect_to beer_category_path, notice: "Beer Category Updated"}
-    end
-  end
+  
 
   private
     def set_beer_category

@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
   devise_for :users
-  resources :beers
+  resources :beers do 
+    collection do
+      get ':id/archive', to: 'beers#archive', as: 'archive'
+    end 
+  end
+
     #get 'categories/index'
   resources :beer_categories
   

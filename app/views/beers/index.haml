@@ -5,4 +5,7 @@
       %a.list-group-item
         %h4 #{beer.name} 
         %p #{beer.description}
+        = link_to '',edit_beer_path(id: beer.id), class: "fa fa-edit"
+        = link_to '',"Delete", class: "fa fa-delete", method: :delete
+        = link_to '',archive_beers_path(id: beer.id), class: "fa fa-archive"
   = link_to "Add Beer", new_beer_path, class: "btn btn-primary btn-lg"
